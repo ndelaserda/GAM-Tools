@@ -19,6 +19,8 @@ os.system('clear')
 csv_name = input('Please enter the name of the csv you need data for: ')
 os.system('clear')
 
+#i adjust in my search algorithm for the average user not knowing that computers start with 0. So technically
+#the first column is 0, but they'll (hopefully) put 1 etc. 
 column_number = input('What column is the serial number in? (#s only): ')
 #check valid user input
 if int(column_number) not in range(1,100):
@@ -49,7 +51,7 @@ r2 = csv.reader(open(master_csv))
 lines_need = list(r1)
 lines_all = list(r2)
 
-#Set some coutners for positions in the csv files as I'm reading through
+#Set some counters for positions in the csv files as I'm reading through
 row_need = 0
 row_all = 0
 
@@ -62,6 +64,7 @@ lines_need[0].append(lines_all[0][int(data_type)-1])
 
 #Goes through and checks if current serial number matches the serial number in that row, if it does
 #it copies over the corresponding data found, master sheet must be setup as deviceid, serialnumber, ou, assetid to work
+#i also subtract 1 off the column number to adjust as stated earlier
 for need_line in open(csv_name):
     for all_line in open(master_csv):
 
